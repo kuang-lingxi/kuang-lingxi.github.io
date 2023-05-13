@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>useEffect和useLayoutEffect的区别 | buuug</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    
+    <meta name="description" content="Blog">
+    
+    <link rel="preload" href="/assets/css/0.styles.a509abab.css" as="style"><link rel="preload" href="/assets/js/app.b8096a98.js" as="script"><link rel="preload" href="/assets/js/21.bf7b29c4.js" as="script"><link rel="preload" href="/assets/js/2.f7c58a73.js" as="script"><link rel="preload" href="/assets/js/31.f23cdcc2.js" as="script"><link rel="prefetch" href="/assets/js/10.9f899a40.js"><link rel="prefetch" href="/assets/js/11.2d977f36.js"><link rel="prefetch" href="/assets/js/12.6a78c77b.js"><link rel="prefetch" href="/assets/js/13.fbdd2dbb.js"><link rel="prefetch" href="/assets/js/14.a0e94ab5.js"><link rel="prefetch" href="/assets/js/15.14696e5f.js"><link rel="prefetch" href="/assets/js/16.b4d7f12b.js"><link rel="prefetch" href="/assets/js/17.a1268fee.js"><link rel="prefetch" href="/assets/js/18.e006a18f.js"><link rel="prefetch" href="/assets/js/19.dc652960.js"><link rel="prefetch" href="/assets/js/20.6871ee84.js"><link rel="prefetch" href="/assets/js/22.2b187d4a.js"><link rel="prefetch" href="/assets/js/23.b378ab73.js"><link rel="prefetch" href="/assets/js/24.7f821dca.js"><link rel="prefetch" href="/assets/js/25.3094cca7.js"><link rel="prefetch" href="/assets/js/26.b63bfa1d.js"><link rel="prefetch" href="/assets/js/27.05317306.js"><link rel="prefetch" href="/assets/js/28.5df471f1.js"><link rel="prefetch" href="/assets/js/29.460f4c4f.js"><link rel="prefetch" href="/assets/js/3.f9c8446f.js"><link rel="prefetch" href="/assets/js/30.dad3cbd3.js"><link rel="prefetch" href="/assets/js/32.b5d5a2db.js"><link rel="prefetch" href="/assets/js/33.af894eae.js"><link rel="prefetch" href="/assets/js/4.0bce2d4a.js"><link rel="prefetch" href="/assets/js/5.79fff311.js"><link rel="prefetch" href="/assets/js/6.ff667613.js"><link rel="prefetch" href="/assets/js/7.a5829279.js"><link rel="prefetch" href="/assets/js/8.61c949c0.js"><link rel="prefetch" href="/assets/js/9.968eca4f.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.a509abab.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">buuug</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="专题列表" class="dropdown-title"><span class="title">专题列表</span> <span class="arrow down"></span></button> <button type="button" aria-label="专题列表" class="mobile-dropdown-title"><span class="title">专题列表</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vue/" class="nav-link">
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/react/" class="nav-link router-link-active">
+  react
+</a></li><li class="dropdown-item"><!----> <a href="/css/" class="nav-link">
+  css
+</a></li><li class="dropdown-item"><!----> <a href="/other/" class="nav-link">
+  随便写写
+</a></li><li class="dropdown-item"><!----> <a href="/chromium/" class="nav-link">
+  chromium
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="专题列表" class="dropdown-title"><span class="title">专题列表</span> <span class="arrow down"></span></button> <button type="button" aria-label="专题列表" class="mobile-dropdown-title"><span class="title">专题列表</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vue/" class="nav-link">
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/react/" class="nav-link router-link-active">
+  react
+</a></li><li class="dropdown-item"><!----> <a href="/css/" class="nav-link">
+  css
+</a></li><li class="dropdown-item"><!----> <a href="/other/" class="nav-link">
+  随便写写
+</a></li><li class="dropdown-item"><!----> <a href="/chromium/" class="nav-link">
+  chromium
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/react/%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/" class="sidebar-link">react渲染流程</a></li><li><a href="/react/componentDidMount/" class="sidebar-link">componentDidMount</a></li><li><a href="/react/diff/" class="sidebar-link">react的diff算法</a></li><li><a href="/react/hooks/" class="sidebar-link">react hooks</a></li><li><a href="/react/react17-setState/" class="sidebar-link">react17的setState</a></li><li><a href="/react/react18-setState/" class="sidebar-link">react18的setState</a></li><li><a href="/react/useEffect/" aria-current="page" class="active sidebar-link">useEffect和useLayoutEffect</a></li><li><a href="/react/react%20useState%E7%9A%84%E8%87%AA%E5%8A%A8%E4%BC%98%E5%8C%96/" class="sidebar-link">react useState的自动优化</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="useeffect和uselayouteffect的区别"><a href="#useeffect和uselayouteffect的区别" class="header-anchor">#</a> useEffect和useLayoutEffect的区别</h1> <p>react hook面世已经有一段时间了, 相信很多人都已经在代码中用上了hooks.而对于 <code>useEffect</code> 和 <code>useLayoutEffect</code>, 我们使用的最多的应该就是<code>useEffect</code>.那他们两个到底有什么不一样的地方?</p> <h4 id="使用方式"><a href="#使用方式" class="header-anchor">#</a> 使用方式</h4> <p>这两个函数的使用方式其实非常简单, 他们都接受一个函数一个数组, 只有在数组里面的值改变的情况下才会再次执行 effect.所以对于使用方式我就不过多介绍了, 不清楚的可以先参考<a href="https://zh-hans.reactjs.org/docs/hooks-reference.html" target="_blank" rel="noopener noreferrer">官网
+<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>.</p> <h4 id="差异"><a href="#差异" class="header-anchor">#</a> 差异</h4> <ul><li><code>useEffect</code> 是异步执行的, 而<code>useLayoutEffect</code>是同步执行的.</li> <li><code>useEffect</code> 的执行时机是浏览器完成渲染之后, 而 <code>useLayoutEffect</code> 的执行时机是浏览器把内容真正渲染到界面之前, 和 <code>componentDidMount</code> 等价.</li></ul> <h4 id="具体表现"><a href="#具体表现" class="header-anchor">#</a> 具体表现</h4> <p>我们用一个很简单的例子</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> useEffect<span class="token punctuation">,</span> useLayoutEffect<span class="token punctuation">,</span> useState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> logo <span class="token keyword">from</span> <span class="token string">'./logo.svg'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">'./App.css'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">App</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>state<span class="token punctuation">,</span> setState<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token string">&quot;hello world&quot;</span><span class="token punctuation">)</span>
+
+  <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>i <span class="token operator">&lt;=</span> <span class="token number">100000000</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      i<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token function">setState</span><span class="token punctuation">(</span><span class="token string">&quot;world hello&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// useLayoutEffect(() =&gt; {</span>
+  <span class="token comment">//   let i = 0;</span>
+  <span class="token comment">//   while(i &lt;= 100000000) {</span>
+  <span class="token comment">//     i++;</span>
+  <span class="token comment">//   };</span>
+  <span class="token comment">//   setState(&quot;world hello&quot;);</span>
+  <span class="token comment">// }, []);</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span><span class="token punctuation">{</span>state<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> App<span class="token punctuation">;</span>
+</code></pre></div><p>这是它的效果</p> <p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f1e9d70eee0542a2af145dcd6d7470f6~tplv-k3u1fbpfcp-watermark.image" alt=""></p> <p>而换成 <code>useLayoutEffect</code> 之后闪烁现象就消失了</p> <p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6831ab94d19448199a8f84e61e009f47~tplv-k3u1fbpfcp-watermark.image" alt=""></p> <p>看到这里我相信你应该能理解他们的区别了, 因为 <code>useEffect</code> 是渲染完之后异步执行的, 所以会导致 hello world 先被渲染到了屏幕上, 再变成 world hello, 就会出现闪烁现象.而 <code>useLayoutEffect</code> 是渲染之前同步执行的, 所以会等它执行完再渲染上去, 就避免了闪烁现象.也就是说我们最好把操作 dom 的相关操作放到 <code>useLayouteEffect</code> 中去, 避免导致闪烁.</p> <h4 id="ssr"><a href="#ssr" class="header-anchor">#</a> ssr</h4> <p>也正是因为 <code>useLayoutEffect</code> 可能会导致渲染结果不一样的关系, 如果你在 ssr 的时候使用这个函数会有一个 warning.</p> <div class="language- extra-class"><pre class="language-text"><code>Warning: useLayoutEffect does nothing on the server, because its effect cannot be encoded into the server renderer's output format. This will lead to a mismatch between the initial, non-hydrated UI and the intended UI. To avoid this, useLayoutEffect should only be used in components that render exclusively on the client. See https://fb.me/react-uselayouteffect-ssr for common fixes.
+</code></pre></div><p>这是因为 <code>useLayoutEffect</code> 是不会在服务端执行的, 所以就有可能导致 ssr 渲染出来的内容和实际的首屏内容并不一致.而解决这个问题也很简单:</p> <ol><li>放弃使用 <code>useLayoutEffect</code>, 使用 <code>useEffect</code> 代替</li> <li>如果你明确知道 <code>useLayouteffect</code> 对于首屏渲染并没有影响, 但是后续会需要, 你可以这样写</li></ol> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> useEffect<span class="token punctuation">,</span> useLayoutEffect <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> useCustomLayoutEffect <span class="token operator">=</span> <span class="token keyword">typeof</span> window <span class="token operator">!==</span> <span class="token string">'undefined'</span> <span class="token operator">?</span> useLayoutEffect <span class="token operator">:</span> useEffect<span class="token punctuation">;</span>
+</code></pre></div><p>当你使用 <code>useLayoutEffect</code> 的时候就用 <code>useCustomLayoutEffect</code> 代替.这样在服务端就会用 <code>useEffect</code> , 这样就不会报 warning 了.</p> <h4 id="源码剖析"><a href="#源码剖析" class="header-anchor">#</a> 源码剖析</h4> <p>那么 <code>useEffect</code> 和 <code>useLayoutEffect</code> 到底是在什么时候被调用的呢?我们去源码中一探究竟.</p> <h5 id="useeffect"><a href="#useeffect" class="header-anchor">#</a> useEffect</h5> <p>首先找到 <code>useEffect</code> 调用的入口</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">updateEffect</span><span class="token punctuation">(</span><span class="token parameter">create<span class="token punctuation">,</span> deps</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">{</span>
+    <span class="token comment">// $FlowExpectedError - jest isn't a global, and isn't recognized outside of tests</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">'undefined'</span> <span class="token operator">!==</span> <span class="token keyword">typeof</span> jest<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">warnIfNotCurrentlyActingEffectsInDEV</span><span class="token punctuation">(</span>currentlyRenderingFiber$1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> <span class="token function">updateEffectImpl</span><span class="token punctuation">(</span>Update <span class="token operator">|</span> Passive<span class="token punctuation">,</span> Passive$1<span class="token punctuation">,</span> create<span class="token punctuation">,</span> deps<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>调用 <code>updateEffectImpl</code> 时传入的 <code>hookEffectTag</code> 为 <code>Passive\$1</code> , 所以我们找一下: <code>Passive\$1</code>.</p> <p>然后我们找到是在这里传入了 <code>Passive\$1</code> 类型来调用 <code>useEffect</code> .</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">commitPassiveHookEffects</span><span class="token punctuation">(</span><span class="token parameter">finishedWork</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>finishedWork<span class="token punctuation">.</span>effectTag <span class="token operator">&amp;</span> Passive<span class="token punctuation">)</span> <span class="token operator">!==</span> NoEffect<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">switch</span> <span class="token punctuation">(</span>finishedWork<span class="token punctuation">.</span>tag<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">case</span> <span class="token literal-property property">FunctionComponent</span><span class="token operator">:</span>
+      <span class="token keyword">case</span> <span class="token literal-property property">ForwardRef</span><span class="token operator">:</span>
+      <span class="token keyword">case</span> <span class="token literal-property property">SimpleMemoComponent</span><span class="token operator">:</span>
+      <span class="token keyword">case</span> <span class="token literal-property property">Block</span><span class="token operator">:</span>
+        <span class="token punctuation">{</span>
+          <span class="token comment">// TODO (#17945) We should call all passive destroy functions (for all fibers)</span>
+          <span class="token comment">// before calling any create functions. The current approach only serializes</span>
+          <span class="token comment">// these for a single fiber.</span>
+          <span class="token function">commitHookEffectListUnmount</span><span class="token punctuation">(</span>Passive$1 <span class="token operator">|</span> HasEffect<span class="token punctuation">,</span> finishedWork<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token function">commitHookEffectListMount</span><span class="token punctuation">(</span>Passive$1 <span class="token operator">|</span> HasEffect<span class="token punctuation">,</span> finishedWork<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>那我们继续顺藤摸瓜找 <code>commitPassiveHookEffects</code></p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">flushPassiveEffectsImpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token operator">...</span>省略
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>_effect2 <span class="token operator">!==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token punctuation">{</span>
+        <span class="token function">setCurrentFiber</span><span class="token punctuation">(</span>_effect2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">invokeGuardedCallback</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> commitPassiveHookEffects<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> _effect2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+   <span class="token punctuation">}</span>
+    <span class="token operator">...</span>省略
+<span class="token punctuation">}</span>
+</code></pre></div><p>老样子, 找<code>flushPassiveEffectsImpl</code></p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">flushPassiveEffects</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>pendingPassiveEffectsRenderPriority <span class="token operator">!==</span> NoPriority<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> priorityLevel <span class="token operator">=</span> pendingPassiveEffectsRenderPriority <span class="token operator">&gt;</span> NormalPriority <span class="token operator">?</span> NormalPriority <span class="token operator">:</span> pendingPassiveEffectsRenderPriority<span class="token punctuation">;</span>
+    pendingPassiveEffectsRenderPriority <span class="token operator">=</span> NoPriority<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token function">runWithPriority$1</span><span class="token punctuation">(</span>priorityLevel<span class="token punctuation">,</span> flushPassiveEffectsImpl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>再往上一层是<code>commitBeforeMutationEffects</code>, 这里面调用<code>flushPassiveEffects</code>的方法是<code>scheduleCallback</code>, 这是一个调度操作, 是异步执行的.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> commitBeforeMutationEffects<span class="token punctuation">{</span>
+    <span class="token operator">...</span>省略
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>effectTag <span class="token operator">&amp;</span> Passive<span class="token punctuation">)</span> <span class="token operator">!==</span> NoEffect<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// If there are passive effects, schedule a callback to flush at</span>
+      <span class="token comment">// the earliest opportunity.</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>rootDoesHavePassiveEffects<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        rootDoesHavePassiveEffects <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token function">scheduleCallback</span><span class="token punctuation">(</span>NormalPriority<span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token function">flushPassiveEffects</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token operator">...</span>省略
+<span class="token punctuation">}</span>
+</code></pre></div><p>继续顺着 <code>commitBeforeMutationEffects</code>方法往上找的话, 我们可以找到最终调用 useEffect 的地方是 <code>commitRootImpl</code> , 这是我们 commit 阶段会调用的一个函数, 所以就是在这里面对 <code>useEffect</code> 进行了调度, 在完成渲染工作以后去异步执行了 <code>useEffect</code> .</p> <h5 id="uselayouteffect"><a href="#uselayouteffect" class="header-anchor">#</a> useLayoutEffect</h5> <p>老样子, 从入口找起</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">updateLayoutEffect</span><span class="token punctuation">(</span><span class="token parameter">create<span class="token punctuation">,</span> deps</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token function">updateEffectImpl</span><span class="token punctuation">(</span>Update<span class="token punctuation">,</span> Layout<span class="token punctuation">,</span> create<span class="token punctuation">,</span> deps<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>这里传进去的 <code>hookEffectTag</code> 是<code>Layout</code>, 那么我们找一下<code>Layout</code>.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">commitLifeCycles</span><span class="token punctuation">(</span><span class="token parameter">finishedRoot<span class="token punctuation">,</span> current<span class="token punctuation">,</span> finishedWork<span class="token punctuation">,</span> committedExpirationTime</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">switch</span> <span class="token punctuation">(</span>finishedWork<span class="token punctuation">.</span>tag<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token literal-property property">FunctionComponent</span><span class="token operator">:</span>
+    <span class="token keyword">case</span> <span class="token literal-property property">ForwardRef</span><span class="token operator">:</span>
+    <span class="token keyword">case</span> <span class="token literal-property property">SimpleMemoComponent</span><span class="token operator">:</span>
+    <span class="token keyword">case</span> <span class="token literal-property property">Block</span><span class="token operator">:</span>
+      <span class="token punctuation">{</span>
+        <span class="token comment">// At this point layout effects have already been destroyed (during mutation phase).</span>
+        <span class="token comment">// This is done to prevent sibling component effects from interfering with each other,</span>
+        <span class="token comment">// e.g. a destroy function in one component should never override a ref set</span>
+        <span class="token comment">// by a create function in another component during the same commit.</span>
+        <span class="token function">commitHookEffectListMount</span><span class="token punctuation">(</span>Layout <span class="token operator">|</span> HasEffect<span class="token punctuation">,</span> finishedWork<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+    <span class="token keyword">case</span> <span class="token literal-property property">ClassComponent</span><span class="token operator">:</span>
+      <span class="token punctuation">{</span>
+        <span class="token keyword">var</span> instance <span class="token operator">=</span> finishedWork<span class="token punctuation">.</span>stateNode<span class="token punctuation">;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>finishedWork<span class="token punctuation">.</span>effectTag <span class="token operator">&amp;</span> Update<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>current <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">startPhaseTimer</span><span class="token punctuation">(</span>finishedWork<span class="token punctuation">,</span> <span class="token string">'componentDidMount'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// We could update instance props and state here,</span>
+            <span class="token comment">// but instead we rely on them being set during last render.</span>
+            <span class="token comment">// TODO: revisit this when we implement resuming.</span>
+
+            <span class="token punctuation">{</span>
+              <span class="token keyword">if</span> <span class="token punctuation">(</span>finishedWork<span class="token punctuation">.</span>type <span class="token operator">===</span> finishedWork<span class="token punctuation">.</span>elementType <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>didWarnAboutReassigningProps<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>instance<span class="token punctuation">.</span>props <span class="token operator">!==</span> finishedWork<span class="token punctuation">.</span>memoizedProps<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                  <span class="token function">error</span><span class="token punctuation">(</span><span class="token string">'Expected %s props to match memoized props before '</span> <span class="token operator">+</span> <span class="token string">'componentDidMount. '</span> <span class="token operator">+</span> <span class="token string">'This might either be because of a bug in React, or because '</span> <span class="token operator">+</span> <span class="token string">'a component reassigns its own `this.props`. '</span> <span class="token operator">+</span> <span class="token string">'Please file an issue.'</span><span class="token punctuation">,</span> <span class="token function">getComponentName</span><span class="token punctuation">(</span>finishedWork<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token string">'instance'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>instance<span class="token punctuation">.</span>state <span class="token operator">!==</span> finishedWork<span class="token punctuation">.</span>memoizedState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                  <span class="token function">error</span><span class="token punctuation">(</span><span class="token string">'Expected %s state to match memoized state before '</span> <span class="token operator">+</span> <span class="token string">'componentDidMount. '</span> <span class="token operator">+</span> <span class="token string">'This might either be because of a bug in React, or because '</span> <span class="token operator">+</span> <span class="token string">'a component reassigns its own `this.props`. '</span> <span class="token operator">+</span> <span class="token string">'Please file an issue.'</span><span class="token punctuation">,</span> <span class="token function">getComponentName</span><span class="token punctuation">(</span>finishedWork<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token string">'instance'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+              <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+
+            instance<span class="token punctuation">.</span><span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">stopPhaseTimer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">var</span> prevProps <span class="token operator">=</span> finishedWork<span class="token punctuation">.</span>elementType <span class="token operator">===</span> finishedWork<span class="token punctuation">.</span>type <span class="token operator">?</span> current<span class="token punctuation">.</span>memoizedProps <span class="token operator">:</span> <span class="token function">resolveDefaultProps</span><span class="token punctuation">(</span>finishedWork<span class="token punctuation">.</span>type<span class="token punctuation">,</span> current<span class="token punctuation">.</span>memoizedProps<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">var</span> prevState <span class="token operator">=</span> current<span class="token punctuation">.</span>memoizedState<span class="token punctuation">;</span>
+            <span class="token function">startPhaseTimer</span><span class="token punctuation">(</span>finishedWork<span class="token punctuation">,</span> <span class="token string">'componentDidUpdate'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// We could update instance props and state here,</span>
+            <span class="token comment">// but instead we rely on them being set during last render.</span>
+            <span class="token comment">// TODO: revisit this when we implement resuming.</span>
+
+            <span class="token punctuation">{</span>
+              <span class="token keyword">if</span> <span class="token punctuation">(</span>finishedWork<span class="token punctuation">.</span>type <span class="token operator">===</span> finishedWork<span class="token punctuation">.</span>elementType <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>didWarnAboutReassigningProps<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>instance<span class="token punctuation">.</span>props <span class="token operator">!==</span> finishedWork<span class="token punctuation">.</span>memoizedProps<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                  <span class="token function">error</span><span class="token punctuation">(</span><span class="token string">'Expected %s props to match memoized props before '</span> <span class="token operator">+</span> <span class="token string">'componentDidUpdate. '</span> <span class="token operator">+</span> <span class="token string">'This might either be because of a bug in React, or because '</span> <span class="token operator">+</span> <span class="token string">'a component reassigns its own `this.props`. '</span> <span class="token operator">+</span> <span class="token string">'Please file an issue.'</span><span class="token punctuation">,</span> <span class="token function">getComponentName</span><span class="token punctuation">(</span>finishedWork<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token string">'instance'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>instance<span class="token punctuation">.</span>state <span class="token operator">!==</span> finishedWork<span class="token punctuation">.</span>memoizedState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                  <span class="token function">error</span><span class="token punctuation">(</span><span class="token string">'Expected %s state to match memoized state before '</span> <span class="token operator">+</span> <span class="token string">'componentDidUpdate. '</span> <span class="token operator">+</span> <span class="token string">'This might either be because of a bug in React, or because '</span> <span class="token operator">+</span> <span class="token string">'a component reassigns its own `this.props`. '</span> <span class="token operator">+</span> <span class="token string">'Please file an issue.'</span><span class="token punctuation">,</span> <span class="token function">getComponentName</span><span class="token punctuation">(</span>finishedWork<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token string">'instance'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+              <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+
+            instance<span class="token punctuation">.</span><span class="token function">componentDidUpdate</span><span class="token punctuation">(</span>prevProps<span class="token punctuation">,</span> prevState<span class="token punctuation">,</span> instance<span class="token punctuation">.</span>__reactInternalSnapshotBeforeUpdate<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">stopPhaseTimer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token operator">...</span>省略
+<span class="token punctuation">}</span>
+</code></pre></div><p>而在这里我们可以看到, class 组件的 <code>componentDidMount</code>生命周期也是在这里被调用的, 所以其实<code>useLayoutEffect</code>是和<code>componentDidMount</code>等价的.</p> <p>而一直往上找最后还是会找到 <code>commitRootImpl</code>方法中去, 同时在这个过程中并没有找到什么调度的方法, 所以 <code>useLayoutEffect</code>会同步执行.</p> <h4 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h4> <ol><li>优先使用 <code>useEffect</code>, 因为它是异步执行的, 不会阻塞渲染</li> <li>会影响到渲染的操作尽量放到 <code>useLayoutEffect</code>中去, 避免出现闪烁问题</li> <li><code>useLayoutEffect</code>和<code>componentDidMount</code>是等价的, 会同步调用, 阻塞渲染</li> <li><code>useLayoutEffect</code>在服务端渲染的时候使用会有一个 warning, 因为它可能导致首屏实际内容和服务端渲染出来的内容不一致.</li></ol></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/react/react18-setState/" class="prev">
+        react18的setState
+      </a></span> <span class="next"><a href="/react/react%20useState%E7%9A%84%E8%87%AA%E5%8A%A8%E4%BC%98%E5%8C%96/">
+        react useState的自动优化
+      </a>
+      →
+    </span></p></div>  <!----></main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.b8096a98.js" defer></script><script src="/assets/js/21.bf7b29c4.js" defer></script><script src="/assets/js/2.f7c58a73.js" defer></script><script src="/assets/js/31.f23cdcc2.js" defer></script>
+  </body>
+</html>

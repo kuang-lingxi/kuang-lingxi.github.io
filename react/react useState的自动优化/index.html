@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>react useState 的自动优化 | buuug</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    
+    <meta name="description" content="Blog">
+    
+    <link rel="preload" href="/assets/css/0.styles.a509abab.css" as="style"><link rel="preload" href="/assets/js/app.b8096a98.js" as="script"><link rel="preload" href="/assets/js/21.bf7b29c4.js" as="script"><link rel="preload" href="/assets/js/2.f7c58a73.js" as="script"><link rel="preload" href="/assets/js/17.a1268fee.js" as="script"><link rel="prefetch" href="/assets/js/10.9f899a40.js"><link rel="prefetch" href="/assets/js/11.2d977f36.js"><link rel="prefetch" href="/assets/js/12.6a78c77b.js"><link rel="prefetch" href="/assets/js/13.fbdd2dbb.js"><link rel="prefetch" href="/assets/js/14.a0e94ab5.js"><link rel="prefetch" href="/assets/js/15.14696e5f.js"><link rel="prefetch" href="/assets/js/16.b4d7f12b.js"><link rel="prefetch" href="/assets/js/18.e006a18f.js"><link rel="prefetch" href="/assets/js/19.dc652960.js"><link rel="prefetch" href="/assets/js/20.6871ee84.js"><link rel="prefetch" href="/assets/js/22.2b187d4a.js"><link rel="prefetch" href="/assets/js/23.b378ab73.js"><link rel="prefetch" href="/assets/js/24.7f821dca.js"><link rel="prefetch" href="/assets/js/25.3094cca7.js"><link rel="prefetch" href="/assets/js/26.b63bfa1d.js"><link rel="prefetch" href="/assets/js/27.05317306.js"><link rel="prefetch" href="/assets/js/28.5df471f1.js"><link rel="prefetch" href="/assets/js/29.460f4c4f.js"><link rel="prefetch" href="/assets/js/3.f9c8446f.js"><link rel="prefetch" href="/assets/js/30.dad3cbd3.js"><link rel="prefetch" href="/assets/js/31.f23cdcc2.js"><link rel="prefetch" href="/assets/js/32.b5d5a2db.js"><link rel="prefetch" href="/assets/js/33.af894eae.js"><link rel="prefetch" href="/assets/js/4.0bce2d4a.js"><link rel="prefetch" href="/assets/js/5.79fff311.js"><link rel="prefetch" href="/assets/js/6.ff667613.js"><link rel="prefetch" href="/assets/js/7.a5829279.js"><link rel="prefetch" href="/assets/js/8.61c949c0.js"><link rel="prefetch" href="/assets/js/9.968eca4f.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.a509abab.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">buuug</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="专题列表" class="dropdown-title"><span class="title">专题列表</span> <span class="arrow down"></span></button> <button type="button" aria-label="专题列表" class="mobile-dropdown-title"><span class="title">专题列表</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vue/" class="nav-link">
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/react/" class="nav-link router-link-active">
+  react
+</a></li><li class="dropdown-item"><!----> <a href="/css/" class="nav-link">
+  css
+</a></li><li class="dropdown-item"><!----> <a href="/other/" class="nav-link">
+  随便写写
+</a></li><li class="dropdown-item"><!----> <a href="/chromium/" class="nav-link">
+  chromium
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="专题列表" class="dropdown-title"><span class="title">专题列表</span> <span class="arrow down"></span></button> <button type="button" aria-label="专题列表" class="mobile-dropdown-title"><span class="title">专题列表</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vue/" class="nav-link">
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/react/" class="nav-link router-link-active">
+  react
+</a></li><li class="dropdown-item"><!----> <a href="/css/" class="nav-link">
+  css
+</a></li><li class="dropdown-item"><!----> <a href="/other/" class="nav-link">
+  随便写写
+</a></li><li class="dropdown-item"><!----> <a href="/chromium/" class="nav-link">
+  chromium
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/react/%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/" class="sidebar-link">react渲染流程</a></li><li><a href="/react/componentDidMount/" class="sidebar-link">componentDidMount</a></li><li><a href="/react/diff/" class="sidebar-link">react的diff算法</a></li><li><a href="/react/hooks/" class="sidebar-link">react hooks</a></li><li><a href="/react/react17-setState/" class="sidebar-link">react17的setState</a></li><li><a href="/react/react18-setState/" class="sidebar-link">react18的setState</a></li><li><a href="/react/useEffect/" class="sidebar-link">useEffect和useLayoutEffect</a></li><li><a href="/react/react%20useState%E7%9A%84%E8%87%AA%E5%8A%A8%E4%BC%98%E5%8C%96/" aria-current="page" class="active sidebar-link">react useState的自动优化</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/react/react%20useState%E7%9A%84%E8%87%AA%E5%8A%A8%E4%BC%98%E5%8C%96/#实操" class="sidebar-link">实操</a></li><li class="sidebar-sub-header"><a href="/react/react%20useState%E7%9A%84%E8%87%AA%E5%8A%A8%E4%BC%98%E5%8C%96/#总结" class="sidebar-link">总结</a></li><li class="sidebar-sub-header"><a href="/react/react%20useState%E7%9A%84%E8%87%AA%E5%8A%A8%E4%BC%98%E5%8C%96/#参考资料" class="sidebar-link">参考资料</a></li></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="react-usestate-的自动优化"><a href="#react-usestate-的自动优化" class="header-anchor">#</a> react useState 的自动优化</h1> <p>在<code>react</code>中一个非常重要的概念就是<code>state</code>, 每个<code>state</code>都对应着一份<code>ui</code>, 这也是数据驱动视图的核心概念. 所以如果我们想改变视图那么就需要去改变<code>state</code>.</p> <p>在传统的<code>class component</code>中我们通过<code>this.setState</code>来完成这个操作, 在<code>function component</code>中我们通过<code>useState</code>来完成这个操作. 那么问题就来了, 既然<code>state</code>改变会引起视图的变化, 如果我的<code>state</code>没变, <code>react</code>应该如何处理这次<code>setState</code>? 最直观的想法就是没必要进行重复的<code>render</code>, 因为<code>state</code>不变的情况下理论上来说视图也不应该发生变化. 那么如何判断<code>state</code>没有发生改变, 那不就是<code>===</code>么？其实, 并没有这么简单. 我们直接写一个简单的<code>demo</code>来试试.</p> <p><a href="https://codesandbox.io/s/zealous-panka-wonxfy?file=/src/FuncCmp.js" target="_blank" rel="noopener noreferrer">online code<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>, 这里面同时提供了<code>function component</code>和<code>class component</code>, 大家可以体验一下有什么区别. 我们后续的内容基于<code>function component</code>.</p> <h2 id="实操"><a href="#实操" class="header-anchor">#</a> 实操</h2> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> useState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;react&quot;</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">App</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>count<span class="token punctuation">,</span> setCount<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;App render&quot;</span><span class="token punctuation">,</span> count<span class="token punctuation">)</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>count<span class="token operator">:</span> <span class="token punctuation">{</span>count<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;click button&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">setCount</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&gt;</span><span class="token keyword">set</span> count <span class="token number">1</span><span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> App<span class="token punctuation">;</span>
+</code></pre></div><p>我们按照我们的思路来理解一下, 如果我们需要对<code>setState</code>的过程进行优化, 当第一次<code>render</code>的时候, 应该会输出<code>App render</code>, 这一步应该不会存在什么问题. 当我们第一次点击按钮的时候, 也会执行一次<code>render</code>, 因为我们把<code>count</code>从<code>0</code>改为了<code>1</code>. 当我们后续连续点击按钮的时候, <code>state</code>并没有发生改变, 此时我们应该可以忽略这些<code>setCount</code>才对.</p> <p>但是实际上在我们第二次点击按钮的时候, 仍然会触发<code>App render</code>, 直到第三次点击按钮的时候才会停止<code>render</code>.</p> <img src="/assets/img/1.29a08084.png"> <p>这是为啥, 一定是<code>react</code>的<code>bug</code>, 我们直接来帮它修复一下. <code>react</code>的<code>setCount</code>最终调用的其实是<code>dispatchSetState</code>方法:</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">dispatchSetState</span><span class="token punctuation">(</span><span class="token parameter">fiber<span class="token punctuation">,</span> queue<span class="token punctuation">,</span> action</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 帮 react 修复 bug, state 一致的情况下直接 return.</span>
+  <span class="token keyword">const</span> oldState <span class="token operator">=</span> queue<span class="token punctuation">.</span>lastRenderedState<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> newState <span class="token operator">=</span> action<span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span><span class="token punctuation">(</span>oldState <span class="token operator">===</span> newState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> arguments<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token string">'function'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">error</span><span class="token punctuation">(</span><span class="token string">&quot;State updates from the useState() and useReducer() Hooks don't support the &quot;</span> <span class="token operator">+</span> <span class="token string">'second callback argument. To execute a side effect after '</span> <span class="token operator">+</span> <span class="token string">'rendering, declare it in the component body with useEffect().'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">var</span> lane <span class="token operator">=</span> <span class="token function">requestUpdateLane</span><span class="token punctuation">(</span>fiber<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> update <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">lane</span><span class="token operator">:</span> lane<span class="token punctuation">,</span>
+    <span class="token literal-property property">action</span><span class="token operator">:</span> action<span class="token punctuation">,</span>
+    <span class="token literal-property property">hasEagerState</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">eagerState</span><span class="token operator">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">next</span><span class="token operator">:</span> <span class="token keyword">null</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isRenderPhaseUpdate</span><span class="token punctuation">(</span>fiber<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">enqueueRenderPhaseUpdate</span><span class="token punctuation">(</span>queue<span class="token punctuation">,</span> update<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> alternate <span class="token operator">=</span> fiber<span class="token punctuation">.</span>alternate<span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>fiber<span class="token punctuation">.</span>lanes <span class="token operator">===</span> NoLanes <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>alternate <span class="token operator">===</span> <span class="token keyword">null</span> <span class="token operator">||</span> alternate<span class="token punctuation">.</span>lanes <span class="token operator">===</span> NoLanes<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// The queue is currently empty, which means we can eagerly compute the</span>
+      <span class="token comment">// next state before entering the render phase. If the new state is the</span>
+      <span class="token comment">// same as the current state, we may be able to bail out entirely.</span>
+      <span class="token keyword">var</span> lastRenderedReducer <span class="token operator">=</span> queue<span class="token punctuation">.</span>lastRenderedReducer<span class="token punctuation">;</span>
+
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>lastRenderedReducer <span class="token operator">!==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">var</span> prevDispatcher<span class="token punctuation">;</span>
+
+        <span class="token punctuation">{</span>
+          prevDispatcher <span class="token operator">=</span> ReactCurrentDispatcher$1<span class="token punctuation">.</span>current<span class="token punctuation">;</span>
+          ReactCurrentDispatcher$1<span class="token punctuation">.</span>current <span class="token operator">=</span> InvalidNestedHooksDispatcherOnUpdateInDEV<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+          <span class="token keyword">var</span> currentState <span class="token operator">=</span> queue<span class="token punctuation">.</span>lastRenderedState<span class="token punctuation">;</span>
+          <span class="token keyword">var</span> eagerState <span class="token operator">=</span> <span class="token function">lastRenderedReducer</span><span class="token punctuation">(</span>currentState<span class="token punctuation">,</span> action<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Stash the eagerly computed state, and the reducer used to compute</span>
+          <span class="token comment">// it, on the update object. If the reducer hasn't changed by the</span>
+          <span class="token comment">// time we enter the render phase, then the eager state can be used</span>
+          <span class="token comment">// without calling the reducer again.</span>
+
+          update<span class="token punctuation">.</span>hasEagerState <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+          update<span class="token punctuation">.</span>eagerState <span class="token operator">=</span> eagerState<span class="token punctuation">;</span>
+
+          <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">objectIs</span><span class="token punctuation">(</span>eagerState<span class="token punctuation">,</span> currentState<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// Fast path. We can bail out without scheduling React to re-render.</span>
+            <span class="token comment">// It's still possible that we'll need to rebase this update later,</span>
+            <span class="token comment">// if the component re-renders for a different reason and by that</span>
+            <span class="token comment">// time the reducer has changed.</span>
+            <span class="token comment">// TODO: Do we still need to entangle transitions in this case?</span>
+            <span class="token function">enqueueConcurrentHookUpdateAndEagerlyBailout</span><span class="token punctuation">(</span>fiber<span class="token punctuation">,</span> queue<span class="token punctuation">,</span> update<span class="token punctuation">,</span> lane<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment">// Suppress the error. It will throw again in the render phase.</span>
+        <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+          <span class="token punctuation">{</span>
+            ReactCurrentDispatcher$1<span class="token punctuation">.</span>current <span class="token operator">=</span> prevDispatcher<span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">var</span> root <span class="token operator">=</span> <span class="token function">enqueueConcurrentHookUpdate</span><span class="token punctuation">(</span>fiber<span class="token punctuation">,</span> queue<span class="token punctuation">,</span> update<span class="token punctuation">,</span> lane<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">!==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> eventTime <span class="token operator">=</span> <span class="token function">requestEventTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">scheduleUpdateOnFiber</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> fiber<span class="token punctuation">,</span> lane<span class="token punctuation">,</span> eventTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">entangleTransitionUpdate</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> queue<span class="token punctuation">,</span> lane<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">markUpdateInDevTools</span><span class="token punctuation">(</span>fiber<span class="token punctuation">,</span> lane<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>我们在最前面加上了我们之前说的判断逻辑, 发现<code>state</code>一样就直接<code>return</code>. 现在我们再来试一试, 第二次点击<code>click</code>的时候就会直接<code>return</code>, 避免了重复渲染, 看起来非常完美.</p> <img src="/assets/img/2.257c5a82.png"> <p>随后我们把这段代码合进了<code>master</code>, 有一天用户来反馈了, 他说他的<code>setState</code>发疯了, 我们一看代码, 是这样写的:</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> useState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;react&quot;</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">App</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>count<span class="token punctuation">,</span> setCount<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;App render&quot;</span><span class="token punctuation">,</span> count<span class="token punctuation">)</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>count<span class="token operator">:</span> <span class="token punctuation">{</span>count<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;click button&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">setCount</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">setCount</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">setCount</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&gt;</span><span class="token keyword">set</span> count <span class="token number">1</span><span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> App<span class="token punctuation">;</span>
+</code></pre></div><p>咱也不知道他为什么要这样写, 但是他就是这样写了, 按照代码的预期, 每次点击<code>click</code>之后最终的<code>count</code>都会是<code>1</code>才对.</p> <p>而这段代码的表现是, 当<code>count</code>从<code>0</code>-&gt;<code>1</code>的时候, 能正常工作. 再次点击按钮的时候, 你会发现<code>count</code>变成了<code>2</code>. 导致这一切的根源就是我们之前加的那段<code>===</code>的逻辑, 我们跟着代码走一遍.</p> <ol><li><code>currentCount</code>: <code>1</code>.</li> <li>调用 <code>setCount(1)</code>.</li> <li><code>1(currentCount) === 1</code>, 得到 <code>true</code>, <code>return</code>.</li> <li>调用 <code>setCount(2)</code>.</li> <li><code>1(currentCount) === 2</code>, 得到 <code>false</code>, 执行后续代码.</li> <li>调用 <code>setCount(1)</code>.</li> <li><code>1(currentCount) === 1</code>, 得到 <code>true</code>, <code>return</code>.</li></ol> <p>PS: 就是第<code>7</code>步, 此时经过上一个<code>setCount</code>, <code>count</code>本应该是<code>2</code>才对, 但是不要忘了<code>set</code>是一个<strong>异步的行为</strong>, 也就是说我们此时拿到的<code>count</code>还是<code>1</code>, 也就导致我们错误的认为此次不需要更新.</p> <p>所以最后只有<code>setCount(2)</code>执行了, 也把我们的<code>count</code>错误的赋值为<code>2</code>. 如果我们想将剩下的步骤直接跳过, 应该保证这个<code>set</code>是首个<code>set</code>, 这样在<code>state</code>完全一致的情况下才能安全跳过剩下所有的步骤. <code>react</code>把这个优化称为<code>eagerState</code>. 这段逻辑就在我们刚刚截取的代码片段里:</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">if</span> <span class="token punctuation">(</span>fiber<span class="token punctuation">.</span>lanes <span class="token operator">===</span> NoLanes <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>alternate <span class="token operator">===</span> <span class="token keyword">null</span> <span class="token operator">||</span> alternate<span class="token punctuation">.</span>lanes <span class="token operator">===</span> NoLanes<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// The queue is currently empty, which means we can eagerly compute the</span>
+  <span class="token comment">// next state before entering the render phase. If the new state is the</span>
+  <span class="token comment">// same as the current state, we may be able to bail out entirely.</span>
+  <span class="token keyword">var</span> lastRenderedReducer <span class="token operator">=</span> queue<span class="token punctuation">.</span>lastRenderedReducer<span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>lastRenderedReducer <span class="token operator">!==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> prevDispatcher<span class="token punctuation">;</span>
+
+    <span class="token punctuation">{</span>
+      prevDispatcher <span class="token operator">=</span> ReactCurrentDispatcher$1<span class="token punctuation">.</span>current<span class="token punctuation">;</span>
+      ReactCurrentDispatcher$1<span class="token punctuation">.</span>current <span class="token operator">=</span> InvalidNestedHooksDispatcherOnUpdateInDEV<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> currentState <span class="token operator">=</span> queue<span class="token punctuation">.</span>lastRenderedState<span class="token punctuation">;</span>
+      <span class="token keyword">var</span> eagerState <span class="token operator">=</span> <span class="token function">lastRenderedReducer</span><span class="token punctuation">(</span>currentState<span class="token punctuation">,</span> action<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Stash the eagerly computed state, and the reducer used to compute</span>
+      <span class="token comment">// it, on the update object. If the reducer hasn't changed by the</span>
+      <span class="token comment">// time we enter the render phase, then the eager state can be used</span>
+      <span class="token comment">// without calling the reducer again.</span>
+
+      update<span class="token punctuation">.</span>hasEagerState <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+      update<span class="token punctuation">.</span>eagerState <span class="token operator">=</span> eagerState<span class="token punctuation">;</span>
+
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">objectIs</span><span class="token punctuation">(</span>eagerState<span class="token punctuation">,</span> currentState<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Fast path. We can bail out without scheduling React to re-render.</span>
+        <span class="token comment">// It's still possible that we'll need to rebase this update later,</span>
+        <span class="token comment">// if the component re-renders for a different reason and by that</span>
+        <span class="token comment">// time the reducer has changed.</span>
+        <span class="token comment">// TODO: Do we still need to entangle transitions in this case?</span>
+        <span class="token function">enqueueConcurrentHookUpdateAndEagerlyBailout</span><span class="token punctuation">(</span>fiber<span class="token punctuation">,</span> queue<span class="token punctuation">,</span> update<span class="token punctuation">,</span> lane<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment">// Suppress the error. It will throw again in the render phase.</span>
+    <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+      <span class="token punctuation">{</span>
+        ReactCurrentDispatcher$1<span class="token punctuation">.</span>current <span class="token operator">=</span> prevDispatcher<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>其中<code>lanes</code>表示更新的优先级, 也就是说如果存在这个标志, 那么就意味着在之前已经调用过<code>set</code>方法了, 不能粗暴的直接省略后面的过程.</p> <p>所以<code>react</code>本身其实是已经做了这种优化, 但是为什么我们第二次点击的时候还是会触发一次<code>render</code>呢？我们知道<code>react</code>中每个组件其实存在两个<code>fiber</code>.</p> <ul><li><strong>current fiber</strong>: 表示当前组件的<code>fiber</code></li> <li><strong>workInProgress fiber</strong>: 表示正在更新中的<code>fiber</code></li></ul> <p>而<code>react</code>在完成渲染后只会清除掉<code>wip fiber</code>上的<code>lanes</code>, 所以<code>current fiber</code>上的<code>lanes</code>其实并没有清空, 而我们看代码是需要两个<code>fiber</code>上的<code>lanes</code>都为<code>NoLanes</code>才认为本次更新能够通过<code>eagerState</code>的方式进行优化.</p> <p>其实我对这部分逻辑有一些不理解, 在我的认知中, 如果<code>wip fiber</code>上的<code>lanes</code>已经是<code>NoLanes</code>已经能够满足<code>eagerState</code>的触发条件了, 或者说在<code>render</code>完毕去清空<code>lanes</code>时同步清空两个<code>fiber</code>上的<code>lanes</code>. 总之我认为应该有办法在第二次<code>click</code>的时候就停止重复渲染才对. 至于为什么最终呈现的是这个效果, 大家如果有知道的欢迎告诉我.</p> <p>值得一提的是这个优化只存在于<code>function component</code>中, 如果你在<code>class component</code>里面重复<code>setState</code>就会发现<code>react</code>依然会每次都重新进行渲染, 就如我们在文章开头给出的例子一样. 此时如果我们想避免重复渲染, 我们可以利用<code>shouldComponentUpdate</code>来进行手动优化.</p> <h2 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h2> <p>这只是<code>react</code>内部做的一个小优化, 最关键的点就在于<code>set</code>是一个异步行为, 所以让看起来很简单的<code>===</code>逻辑变得复杂.</p> <p>而<code>react</code>团队给我的感觉是他们并不在乎这些小优化. 或许这也是为什么会多了一次<code>render</code>的原因: 这个地方是可以优化, 但没必要, 因为我们已经提供了各种<code>api</code>给到用户可以进行手动优化. 他们似乎更在乎从整体架构上去解决一些<code>render</code>缓慢的问题, 这也就是<code>react 18</code>诞生的理由. 或许这也是为什么很多人觉得<code>vue</code>性能比<code>react</code>好的原因, <code>vue</code>在内部就已经自动帮开发者做了很多优化, 但是<code>react</code>团队的理念似乎并不在此.</p> <h2 id="参考资料"><a href="#参考资料" class="header-anchor">#</a> 参考资料</h2> <ol><li><a href="https://segmentfault.com/a/1190000041531553" target="_blank" rel="noopener noreferrer">https://segmentfault.com/a/1190000041531553<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ol></div> <footer class="page-edit"><!----> <!----></footer> <!---->  <!----></main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.b8096a98.js" defer></script><script src="/assets/js/21.bf7b29c4.js" defer></script><script src="/assets/js/2.f7c58a73.js" defer></script><script src="/assets/js/17.a1268fee.js" defer></script>
+  </body>
+</html>

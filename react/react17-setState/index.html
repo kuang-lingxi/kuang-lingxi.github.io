@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>setState到底是同步还是异步 | buuug</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    
+    <meta name="description" content="Blog">
+    
+    <link rel="preload" href="/assets/css/0.styles.a509abab.css" as="style"><link rel="preload" href="/assets/js/app.b8096a98.js" as="script"><link rel="preload" href="/assets/js/21.bf7b29c4.js" as="script"><link rel="preload" href="/assets/js/2.f7c58a73.js" as="script"><link rel="preload" href="/assets/js/18.e006a18f.js" as="script"><link rel="prefetch" href="/assets/js/10.9f899a40.js"><link rel="prefetch" href="/assets/js/11.2d977f36.js"><link rel="prefetch" href="/assets/js/12.6a78c77b.js"><link rel="prefetch" href="/assets/js/13.fbdd2dbb.js"><link rel="prefetch" href="/assets/js/14.a0e94ab5.js"><link rel="prefetch" href="/assets/js/15.14696e5f.js"><link rel="prefetch" href="/assets/js/16.b4d7f12b.js"><link rel="prefetch" href="/assets/js/17.a1268fee.js"><link rel="prefetch" href="/assets/js/19.dc652960.js"><link rel="prefetch" href="/assets/js/20.6871ee84.js"><link rel="prefetch" href="/assets/js/22.2b187d4a.js"><link rel="prefetch" href="/assets/js/23.b378ab73.js"><link rel="prefetch" href="/assets/js/24.7f821dca.js"><link rel="prefetch" href="/assets/js/25.3094cca7.js"><link rel="prefetch" href="/assets/js/26.b63bfa1d.js"><link rel="prefetch" href="/assets/js/27.05317306.js"><link rel="prefetch" href="/assets/js/28.5df471f1.js"><link rel="prefetch" href="/assets/js/29.460f4c4f.js"><link rel="prefetch" href="/assets/js/3.f9c8446f.js"><link rel="prefetch" href="/assets/js/30.dad3cbd3.js"><link rel="prefetch" href="/assets/js/31.f23cdcc2.js"><link rel="prefetch" href="/assets/js/32.b5d5a2db.js"><link rel="prefetch" href="/assets/js/33.af894eae.js"><link rel="prefetch" href="/assets/js/4.0bce2d4a.js"><link rel="prefetch" href="/assets/js/5.79fff311.js"><link rel="prefetch" href="/assets/js/6.ff667613.js"><link rel="prefetch" href="/assets/js/7.a5829279.js"><link rel="prefetch" href="/assets/js/8.61c949c0.js"><link rel="prefetch" href="/assets/js/9.968eca4f.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.a509abab.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">buuug</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="专题列表" class="dropdown-title"><span class="title">专题列表</span> <span class="arrow down"></span></button> <button type="button" aria-label="专题列表" class="mobile-dropdown-title"><span class="title">专题列表</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vue/" class="nav-link">
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/react/" class="nav-link router-link-active">
+  react
+</a></li><li class="dropdown-item"><!----> <a href="/css/" class="nav-link">
+  css
+</a></li><li class="dropdown-item"><!----> <a href="/other/" class="nav-link">
+  随便写写
+</a></li><li class="dropdown-item"><!----> <a href="/chromium/" class="nav-link">
+  chromium
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="专题列表" class="dropdown-title"><span class="title">专题列表</span> <span class="arrow down"></span></button> <button type="button" aria-label="专题列表" class="mobile-dropdown-title"><span class="title">专题列表</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/vue/" class="nav-link">
+  vue
+</a></li><li class="dropdown-item"><!----> <a href="/react/" class="nav-link router-link-active">
+  react
+</a></li><li class="dropdown-item"><!----> <a href="/css/" class="nav-link">
+  css
+</a></li><li class="dropdown-item"><!----> <a href="/other/" class="nav-link">
+  随便写写
+</a></li><li class="dropdown-item"><!----> <a href="/chromium/" class="nav-link">
+  chromium
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/react/%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/" class="sidebar-link">react渲染流程</a></li><li><a href="/react/componentDidMount/" class="sidebar-link">componentDidMount</a></li><li><a href="/react/diff/" class="sidebar-link">react的diff算法</a></li><li><a href="/react/hooks/" class="sidebar-link">react hooks</a></li><li><a href="/react/react17-setState/" aria-current="page" class="active sidebar-link">react17的setState</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/react/react17-setState/#结论" class="sidebar-link">结论</a></li><li class="sidebar-sub-header"><a href="/react/react17-setState/#scheduleupdateonfiber" class="sidebar-link">scheduleUpdateOnFiber</a></li><li class="sidebar-sub-header"><a href="/react/react17-setState/#usestate的setstate" class="sidebar-link">useState的setState</a></li><li class="sidebar-sub-header"><a href="/react/react17-setState/#案例分析" class="sidebar-link">案例分析</a></li></ul></li><li><a href="/react/react18-setState/" class="sidebar-link">react18的setState</a></li><li><a href="/react/useEffect/" class="sidebar-link">useEffect和useLayoutEffect</a></li><li><a href="/react/react%20useState%E7%9A%84%E8%87%AA%E5%8A%A8%E4%BC%98%E5%8C%96/" class="sidebar-link">react useState的自动优化</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="setstate到底是同步还是异步"><a href="#setstate到底是同步还是异步" class="header-anchor">#</a> setState到底是同步还是异步</h1> <p><code>setState</code> 到底是同步还是异步?很多人可能都有这种经历, 面试的时候面试官给了你一段代码, 让你说出输出的内容, 比如这样:</p> <div class="language-js extra-class"><pre class="language-js"><code>  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">data</span><span class="token operator">:</span> <span class="token string">'data'</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      <span class="token literal-property property">data</span><span class="token operator">:</span> <span class="token string">'did mount state'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;did mount state &quot;</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// did mount state data</span>
+
+    <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        <span class="token literal-property property">data</span><span class="token operator">:</span> <span class="token string">'setTimeout'</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;setTimeout &quot;</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+</code></pre></div><p>而这段代码的输出结果, 第一个 <code>console.log</code> 会输出 <code>data</code> , 而第二个 <code>console.log</code> 会输出 <code>setTimeout</code> .也就是第一次 <code>setState</code> 的时候, 它是异步的, 第二次 <code>setState</code> 的时候, 它又变成了同步的.是不是有点晕?不慌, 我们去源码中看看它到底干了什么.</p> <h2 id="结论"><a href="#结论" class="header-anchor">#</a> 结论</h2> <p>先把结论放到前面, 懒得看的同学可以直接看结论了.</p> <p>只要你进入了 <code>react</code> 的调度流程, 那就是异步的.只要你没有进入 <code>react</code> 的调度流程, 那就是同步的.什么东西不会进入 <code>react</code> 的调度流程? <code>setTimeout</code> <code>setInterval</code>  , 直接在 <code>DOM</code>  上绑定原生事件等.这些都不会走 <code>React</code> 的调度流程, 你在这种情况下调用 <code>setState</code> , 那这次 <code>setState</code> 就是同步的.
+否则就是异步的.</p> <p>而 <code>setState</code> 同步执行的情况下,  <code>DOM</code> 也会被同步更新, 也就意味着如果你多次 <code>setState</code> , 会导致多次更新, 这是毫无意义并且浪费性能的.</p> <h2 id="scheduleupdateonfiber"><a href="#scheduleupdateonfiber" class="header-anchor">#</a> scheduleUpdateOnFiber</h2> <p><code>setState</code> 被调用后最终会走到 <code>scheduleUpdateOnFiber</code> 这个函数里面来, 我们来看看这里面又做了什么:</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">scheduleUpdateOnFiber</span><span class="token punctuation">(</span><span class="token parameter">fiber<span class="token punctuation">,</span> expirationTime</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">checkForNestedUpdates</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">warnAboutRenderPhaseUpdatesInDEV</span><span class="token punctuation">(</span>fiber<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> root <span class="token operator">=</span> <span class="token function">markUpdateTimeFromFiberToRoot</span><span class="token punctuation">(</span>fiber<span class="token punctuation">,</span> expirationTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">warnAboutUpdateOnUnmountedFiberInDEV</span><span class="token punctuation">(</span>fiber<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">checkForInterruption</span><span class="token punctuation">(</span>fiber<span class="token punctuation">,</span> expirationTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">recordScheduleUpdate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// TODO: computeExpirationForFiber also reads the priority. Pass the</span>
+  <span class="token comment">// priority as an argument to that function and this one.</span>
+
+  <span class="token keyword">var</span> priorityLevel <span class="token operator">=</span> <span class="token function">getCurrentPriorityLevel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>expirationTime <span class="token operator">===</span> Sync<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token comment">// Check if we're inside unbatchedUpdates</span>
+    <span class="token punctuation">(</span>executionContext <span class="token operator">&amp;</span> LegacyUnbatchedContext<span class="token punctuation">)</span> <span class="token operator">!==</span> NoContext <span class="token operator">&amp;&amp;</span> <span class="token comment">// Check if we're not already rendering</span>
+    <span class="token punctuation">(</span>executionContext <span class="token operator">&amp;</span> <span class="token punctuation">(</span>RenderContext <span class="token operator">|</span> CommitContext<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">===</span> NoContext<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// Register pending interactions on the root to avoid losing traced interaction data.</span>
+      <span class="token function">schedulePendingInteractions</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> expirationTime<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// This is a legacy edge case. The initial mount of a ReactDOM.render-ed</span>
+      <span class="token comment">// root inside of batchedUpdates should be synchronous, but layout updates</span>
+      <span class="token comment">// should be deferred until the end of the batch.</span>
+
+      <span class="token function">performSyncWorkOnRoot</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token function">ensureRootIsScheduled</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">schedulePendingInteractions</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> expirationTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	  <span class="token comment">// 重点!!!!!!</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>executionContext <span class="token operator">===</span> NoContext<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Flush the synchronous work now, unless we're already working or inside</span>
+        <span class="token comment">// a batch. This is intentionally inside scheduleUpdateOnFiber instead of</span>
+        <span class="token comment">// scheduleCallbackForFiber to preserve the ability to schedule a callback</span>
+        <span class="token comment">// without immediately flushing it. We only do this for user-initiated</span>
+        <span class="token comment">// updates, to preserve historical behavior of legacy mode.</span>
+        <span class="token function">flushSyncCallbackQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token function">ensureRootIsScheduled</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">schedulePendingInteractions</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> expirationTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>executionContext <span class="token operator">&amp;</span> DiscreteEventContext<span class="token punctuation">)</span> <span class="token operator">!==</span> NoContext <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span> <span class="token comment">// Only updates at user-blocking priority or greater are considered</span>
+  <span class="token comment">// discrete, even inside a discrete event.</span>
+  priorityLevel <span class="token operator">===</span> UserBlockingPriority$1 <span class="token operator">||</span> priorityLevel <span class="token operator">===</span> ImmediatePriority<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// This is the result of a discrete event. Track the lowest priority</span>
+    <span class="token comment">// discrete update per root so we can flush them early, if needed.</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>rootsWithPendingDiscreteUpdates <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      rootsWithPendingDiscreteUpdates <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span>root<span class="token punctuation">,</span> expirationTime<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> lastDiscreteTime <span class="token operator">=</span> rootsWithPendingDiscreteUpdates<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>lastDiscreteTime <span class="token operator">===</span> <span class="token keyword">undefined</span> <span class="token operator">||</span> lastDiscreteTime <span class="token operator">&gt;</span> expirationTime<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        rootsWithPendingDiscreteUpdates<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> expirationTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>我们着重看这段代码:</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">if</span> <span class="token punctuation">(</span>executionContext <span class="token operator">===</span> NoContext<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Flush the synchronous work now, unless we're already working or inside</span>
+  <span class="token comment">// a batch. This is intentionally inside scheduleUpdateOnFiber instead of</span>
+  <span class="token comment">// scheduleCallbackForFiber to preserve the ability to schedule a callback</span>
+  <span class="token comment">// without immediately flushing it. We only do this for user-initiated</span>
+  <span class="token comment">// updates, to preserve historical behavior of legacy mode.</span>
+  <span class="token function">flushSyncCallbackQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><code>executionContext</code> 代表了目前 <code>react</code> 所处的阶段, 而 <code>NoContext</code> 你可以理解为是 <code>react</code> 已经没活干了的状态.而 <code>flushSyncCallbackQueue</code> 里面就会去同步调用我们的 <code>this.setState</code> , 也就是说会同步更新我们的 <code>state</code> .所以, 我们知道了, 当 <code>executionContext</code> 为 <code>NoContext</code> 的时候, 我们的 <code>setState</code> 就是同步的.那什么地方会改变 <code>executionContext</code> 的值呢?</p> <p>我们随便找几个地方看看</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">batchedEventUpdates$1</span><span class="token punctuation">(</span><span class="token parameter">fn<span class="token punctuation">,</span> a</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> prevExecutionContext <span class="token operator">=</span> executionContext<span class="token punctuation">;</span>
+  executionContext <span class="token operator">|=</span> EventContext<span class="token punctuation">;</span>
+  <span class="token operator">...</span>省略
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">batchedUpdates$1</span><span class="token punctuation">(</span><span class="token parameter">fn<span class="token punctuation">,</span> a</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> prevExecutionContext <span class="token operator">=</span> executionContext<span class="token punctuation">;</span>
+  executionContext <span class="token operator">|=</span> BatchedContext<span class="token punctuation">;</span>
+  <span class="token operator">...</span>省略
+<span class="token punctuation">}</span>
+</code></pre></div><p>当 <code>react</code> 进入它自己的调度步骤时, 会给这个 <code>executionContext</code> 赋予不同的值, 表示不同的操作以及当前所处的状态, 而 <code>executionContext</code> 的初始值就是 <code>NoContext</code> , 所以只要你不进入 <code>react</code> 的调度流程, 这个值就是 <code>NoContext</code> , 那你的 <code>setState</code> 就是同步的.</p> <h2 id="usestate的setstate"><a href="#usestate的setstate" class="header-anchor">#</a> useState的setState</h2> <p>自从 <code>raect</code> 出了 <code>hooks</code> 之后, 函数组件也能有自己的状态, 那么如果我们调用它的 <code>setState</code> 也是和 <code>this.setState</code> 一样的效果吗?</p> <p>对, 因为 <code>useState</code> 的 <code>set</code> 函数最终也会走到 <code>scheduleUpdateOnFiber</code> , 所以在这一点上和 <code>this.setState</code> 是没有区别的.</p> <p>但是值得注意的是, 我们调用 <code>this.setState</code> 的时候, 它会自动帮我们做一个 <code>state</code> 的合并, 而 <code>hook</code> 则不会, 所以我们在使用的时候要着重注意这一点.</p> <p>举个🌰</p> <div class="language-js extra-class"><pre class="language-js"><code>state <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">data</span><span class="token operator">:</span> <span class="token string">'data'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">data1</span><span class="token operator">:</span> <span class="token string">'data1'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">data</span><span class="token operator">:</span> <span class="token string">'new data'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//{ data: 'new data',data1: 'data1' }</span>
+
+<span class="token keyword">const</span> <span class="token punctuation">[</span>state<span class="token punctuation">,</span> setState<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">data</span><span class="token operator">:</span> <span class="token string">'data'</span><span class="token punctuation">,</span> <span class="token literal-property property">data1</span><span class="token operator">:</span> <span class="token string">'data1'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">data</span><span class="token operator">:</span> <span class="token string">'new data'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//{ data: 'new data' }</span>
+</code></pre></div><p>但是如果你自己去尝试在 <code>function</code> 组件的 <code>setTimeout</code> 中去调用 <code>setState</code> 之后, 打印 <code>state</code> , 你会发现他并没有改变, 这时你就会很疑惑, 为什么呢?这不是同步执行的吗?</p> <p>这是因为一个闭包问题, 你拿到的还是上一个 <code>state</code> , 那打印出来的值自然是上一次的, 此时真正的 <code>state</code> 已经被改变了.那有没有其他的方法可以观察到 <code>function</code> 函数的同步行为?有, 我们下面再介绍.</p> <h2 id="案例分析"><a href="#案例分析" class="header-anchor">#</a> 案例分析</h2> <p><code>setTimeout</code> 、原生事件内调用 <code>setState</code> 的操作确实比较少见, 但是下面这种写法一定很常见了.</p> <div class="language-js extra-class"><pre class="language-js"><code>  <span class="token function-variable function">fetch</span> <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">'fetch data'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">300</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">fetch</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>data<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;data: &quot;</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// data: fetch data</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+</code></pre></div><p>我们在 <code>didMount</code> 的时候发了一个请求, 然后再将结果 <code>setState</code> , 这时候我们用了 <code>async/await</code> 来进行处理.</p> <p>这时候我们会发现其实 <code>setState</code> 也会变成同步了, 为什么呢?因为<code>componentDidMount</code>执行完毕后, 就已经退出了 <code>react</code> 的调度, 而我们请求的代码还没有执行完毕, 等结果请求回来以后 <code>setState</code> 才会执行.<code>async</code> 函数中 <code>await</code> 后面的代码其实是异步执行的.这和我们在 <code>setTimeout</code> 中执行 <code>setState</code> 其实是一个效果, 所以我们的 <code>setState</code> 就变成同步的了.</p> <p>如果它变成同步会有什么坏处呢?我们来看看如果我们多次调用了 <code>setState</code> 会发生什么.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">data</span><span class="token operator">:</span> <span class="token string">'init data'</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token literal-property property">data</span><span class="token operator">:</span> <span class="token string">'data 1'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// console.log(&quot;dom value&quot;, document.querySelector('#state').innerHTML);</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token literal-property property">data</span><span class="token operator">:</span> <span class="token string">'data 2'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// console.log(&quot;dom value&quot;, document.querySelector('#state').innerHTML);</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token literal-property property">data</span><span class="token operator">:</span> <span class="token string">'data 3'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// console.log(&quot;dom value&quot;, document.querySelector('#state').innerHTML);</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>div id<span class="token operator">=</span><span class="token string">&quot;state&quot;</span><span class="token operator">&gt;</span>
+      <span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>data<span class="token punctuation">}</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>这是在浏览器运行的结果</p> <img src="/assets/img/setState.380b4b29.gif"> <p>这样来看的话, 其实也并没有什么, 每次刷新后最终还是会显示 <code>data 3</code> , 但是我们将代码中 <code>console.log</code> 的注释去掉, 再看看:</p> <img src="/assets/img/console.a2be629d.jpg"> <p>我们每次都能在 <code>DOM</code> 上拿到最新的 <code>state</code> , 这是因为 <code>react</code> 已经把 <code>state</code> 的修改同步更新了, 但是为什么界面没有显示出来?因为对浏览器来说, 渲染线程 和 js线程 是互斥的,  <code>react</code> 代码运行时浏览器是没办法渲染的.所以实际上我们已经把 <code>DOM</code> 更新了, 但是 <code>state</code> 又被修改了,  <code>react</code> 只好再做一次更新, 这样反复了三次, 最后 <code>react</code> 代码执行完毕后, 浏览器才把最终的结果渲染到了界面上.这也就意味着其实我们已经做了两次无用的更新.</p> <p>我们把 <code>setTimeout</code> 去掉, 就会发现三次都输出了 <code>init data</code> , 因为此时的 <code>setState</code> 是异步的, 会把三次更新合并到一次去执行.</p> <p>所以当 <code>setState</code> 变成同步的时候就要注意, 不要写出让 <code>react</code> 多次更新组件的代码, 这是毫无意义的.</p> <p>而这里也回答了之前提出的问题, 如果我们想在 <code>function</code> 函数中观察到同步流程, 大家可以去试试当你在 <code>setTimeout</code> 中 <code>setState</code> 之后,  <code>DOM</code> 里面的内容会不会改变.</p> <h3 id="结语"><a href="#结语" class="header-anchor">#</a> 结语</h3> <p><code>react</code> 已经帮助我们做了很多优化措施, 但是有时候也会因为代码不同的实现方式而导致 <code>react</code> 的性能优化失效, 相当于我们自己做了反优化.所以理解 <code>react</code> 的运行原理对我们日常开发确实是很有帮助的.</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/react/hooks/" class="prev">
+        react hooks
+      </a></span> <span class="next"><a href="/react/react18-setState/">
+        react18的setState
+      </a>
+      →
+    </span></p></div>  <!----></main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.b8096a98.js" defer></script><script src="/assets/js/21.bf7b29c4.js" defer></script><script src="/assets/js/2.f7c58a73.js" defer></script><script src="/assets/js/18.e006a18f.js" defer></script>
+  </body>
+</html>
